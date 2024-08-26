@@ -1,0 +1,16 @@
+
+
+.grand-titre {
+    font-weight: bold; /* Mettre en gras */
+    font-size: xxx-large;
+}
+
+.titre {
+    font-weight: bold; /* Mettre en gras */
+    font-size: xx-large;
+}
+
+.petit-titre {
+    font-weight: bold; /* Mettre en gras */
+    font-size: x-large;
+}

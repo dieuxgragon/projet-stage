@@ -3,11 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nouvel Onglet</title>
+    <title>Projet en entreprise API Balldontlie</title>
+    <link rel="stylesheet" href="style3.css">
 </head>
 <body>
-    <h1>Ceci est le nouvel onglet</h1>
-    <p>Contenu spécifique à cet onglet.</p>
-    <button onclick="window.location.href='/index.html'">Retour à l'accueil</button>
+    <div class="container">
+        <h1 class="grand-titre">Projet en entreprise API Balldontlie</h1>
+
+        <div class="section">
+            <h2 class="section-titre">1. Intégration de l'API</h2>
+            <p>
+                Le projet commence par l'intégration de l'API Balldontlie, qui fournit des données en temps réel sur les joueurs, équipes et matchs de basket-ball. Nous utilisons le module <code>requests</code> en Python pour interagir avec l'API. Par exemple, pour récupérer la liste des joueurs, nous faisons une requête HTTP à l'API et stockons les résultats sous forme de JSON pour les utiliser dans notre application. Voici un extrait de code illustrant cette intégration :
+            </p>
+            <pre><code class="python">
+def get_players():
+    response = requests.get(f'http://www.balldontlie.io/api/v1/players')
+    return response.json()
+            </code></pre>
+        </div>
+
+        <div class="section">
+            <h2 class="section-titre">2. Authentification et Création d'un ID Utilisateur</h2>
+            <p>
+                Pour sécuriser l'accès aux données, nous avons mis en place un système d'authentification simple. Les utilisateurs doivent se connecter pour accéder aux différentes fonctionnalités du site. Les sessions sont gérées à l'aide de Flask pour maintenir la connexion des utilisateurs tout au long de leur navigation. Le code ci-dessous montre comment un utilisateur peut se connecter et démarrer une session :
+            </p>
+            <pre><code class="python">
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        session['username'] = request.form['username']
+        return redirect(url_for('players'))
+    return render_template('login.html')
+            </code></pre>
+        </div>
+
+        <div class="section">
+            <h2 class="section-titre">3. Afficher les Joueurs</h2>
+            <p>
+                Une fois connecté, l'utilisateur est dirigé vers une page listant tous les joueurs de la NBA répertoriés par l'API. Chaque joueur est présenté sous forme de carte cliquable, qui mène à une page détaillant les informations spécifiques du joueur, telles que son équipe, sa position et ses statistiques. Voici un extrait de code pour afficher la liste des joueurs :
+            </p>
+            <pre><code class="python">
+@app.route('/players')
+def players():
+    data = get_players()
+    return render_template('players.html', players=data['data'])
+            </code></pre>
+        </div>
+
+        <div class="section">
+            <h2 class="section-titre">4. Afficher les Équipes</h2>
+            <p>
+                En plus des joueurs, l'application permet de visualiser les équipes de la NBA. Chaque équipe est affichée avec son nom et les détails pertinents. En cliquant sur une équipe, l'utilisateur peut voir tous les joueurs de cette équipe et obtenir des informations supplémentaires sur la conférence et la ville de l'équipe. Voici comment nous affichons les équipes :
+            </p>
+            <pre><code class="python">
+@app.route('/teams')
+def teams():
+    data = get_teams()
+    return render_template('teams.html', teams=data['data'])
+            </code></pre>
+        </div>
+
+        <div class="section">
+            <h2 class="section-titre">5. Afficher les Matchs</h2>
+            <p>
+                Enfin, l'application permet d'accéder aux détails des matchs de basket-ball. Chaque match est présenté avec la date et les équipes participantes. Les utilisateurs peuvent cliquer sur un match pour voir un résumé détaillé et explorer les équipes qui s'affrontent. Le code suivant montre comment les matchs sont récupérés et affichés :
+            </p>
+            <pre><code class="python">
+@app.route('/matches')
+def matches():
+    data = get_games()
+    return render_template('matches.html', games=data['data'])
+            </code></pre>
+        </div>
+
+        <!-- Bouton pour retourner à la page d'accueil -->
+        <div class="retour">
+            <button onclick="window.location.href='index.html'">Retour à la page d'accueil</button>
+        </div>
+    </div>
 </body>
 </html>

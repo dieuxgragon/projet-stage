@@ -1,4 +1,21 @@
-pour lancer le projet il vous suffit d avoir python d installer et de lancer la commande 
+pour lancer le projet il vous suffit d avoir python d installer 
+pour installer python 
+
+```
+Ouvrez votre navigateur web est aller sur le site officiel de python
+Sous la section "Download the latest version for Windows"
+Une fois le fichier téléchargé, double-cliquez dessus pour lancer l’installation.
+Important : cochez la case "Add Python 3.x to PATH" avant de cliquer sur "Install Now". Cela ajoutera Python au PATH, vous permettant de l'utiliser depuis la ligne de commande.
+Cliquez sur Install Now pour installer Python avec les paramètres par défaut.
+Vérifier l'installation
+Ouvrez l'invite de commandes Windows. Pour cela, appuyez sur Win + R, tapez cmd, puis appuyez sur Entrée.
+Tapez la commande suivante pour vérifier que Python est bien installé et accessible :
+bash
+python --version
+Vous devriez voir quelque chose comme Python 3.x.x, confirmant que l'installation s'est bien déroulé
+```
+
+et de lancer la commande 
 
 python .\http-server.py
 
